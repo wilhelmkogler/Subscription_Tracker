@@ -28,7 +28,6 @@ const AllTimeCostList = ({ subscriptions }) => {
   const curr = subscriptions[0]?.currency || "EUR";
   const formatNumber = (num) => Number(num || 0).toLocaleString("de-DE");
 
-  // ha nincs előfizetés, ne jelenjen meg semmi
   if (!subscriptions || subscriptions.length === 0) {
     return null;
   }

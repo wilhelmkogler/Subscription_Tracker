@@ -30,7 +30,6 @@ const formatDate = (date, billingCycle) => {
   return date.toLocaleDateString(undefined, options);
 };
 
-// 🔹 Ezres tagolás szóközzel
 const formatNumber = (num) =>
   num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") || "0";
 
@@ -60,7 +59,9 @@ const SubscriptionCard = ({ sub, onEdit }) => {
       <div className="flex justify-between items-center mb-2">
         <div className="border-l-4 border-primary pl-2">
           <h3 className="text-sm xl:text-xl font-bold">{sub.name}</h3>
-          <p className="text-[0.5rem] xl:text-xs">{sub.category || "Uncategorized"}</p>
+          <p className="text-[0.5rem] xl:text-xs">
+            {sub.category || "Uncategorized"}
+          </p>
         </div>
         <div className="flex gap-2">
           <button

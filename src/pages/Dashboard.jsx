@@ -126,14 +126,16 @@ const Dashboard = () => {
     <div className="p-4 md:p-6">
       <Navbar name={name} />
 
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col-reverse lg:flex-row gap-8">
         <div className="w-full xl:w-[70%]">
           {filtered.length === 0 ? (
-            <div className="bg-white flex justify-center items-center p-4 h-full rounded-2xl">
-              <p className="text-red-500 text-3xl font-bold">No Active Subscriptions</p>
+            <div className="bg-white hidden xl:flex justify-center items-center p-4 h-full rounded-2xl">
+              <p className="text-red-500 text-3xl font-bold">
+                No Active Subscriptions
+              </p>
             </div>
           ) : (
-            <div className="gap-4">
+            <div className="hidden xl:block">
               {viewMode === "card" ? (
                 <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                   {filtered.map((sub) => (
@@ -193,7 +195,7 @@ const Dashboard = () => {
             </div>
           )}
 
-          <div className="mt-6 rounded-2xl">
+          <div className="-mt-2 xl:mt-6 rounded-2xl">
             <TopExpensiveList subscriptions={filtered} />
 
             <div className="flex flex-col xl:flex-row gap-6 mt-6">
@@ -266,7 +268,6 @@ const Dashboard = () => {
             <AverageCostCard subscriptions={filtered} />
           </div>
 
-          {/* Például két oszlopos elrendezésben */}
           <div className="mt-10">
             <CategoryDistributionChart subscriptions={filtered} />
           </div>
@@ -276,6 +277,64 @@ const Dashboard = () => {
           <div className="mt-10">
             <AllTimeTotalCostCard subscriptions={filtered} />
           </div>
+        </div>
+        <div className="block xl:hidden">
+          {viewMode === "card" ? (
+            <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+              {filtered.map((sub) => (
+                <SubscriptionCard
+                  key={sub.id}
+                  sub={sub}
+                  onEdit={(sub) => {
+                    setEditing(sub);
+                    setShowModal(true);
+                  }}
+                />
+              ))}
+
+              <div className="min-h-[170px] xl:min-h-[200px] flex justify-center items-center bg-white font-semibold rounded-2xl hover:bg-gray-300 transition duration-200">
+                <button
+                  onClick={() => {
+                    setShowModal(true);
+                    setEditing(null);
+                  }}
+                  className="w-full h-full flex flex-col justify-center gap-2 text-black hover:cursor-pointer"
+                >
+                  <p className="text-3xl">+</p>
+                  <p className="text-xs xl:text-lg">New Subscription</p>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white shadow rounded-2xl overflow-hidden text-left">
+                <thead className="bg-gray-200 text-xs xl:text-lg italic">
+                  <tr>
+                    <th className="px-4">Name</th>
+                    <th className="p-2">Category</th>
+                    <th className="p-2">Since</th>
+                    <th className="p-2">Next</th>
+                    <th className="p-2">Plan</th>
+                    <th className="p-2">Price</th>
+                    <th className="p-2">Due In</th>
+                    <th className="p-2">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((sub) => (
+                    <SubscriptionTableRow
+                      key={sub.id}
+                      sub={sub}
+                      onEdit={(sub) => {
+                        setEditing(sub);
+                        setShowModal(true);
+                      }}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
 

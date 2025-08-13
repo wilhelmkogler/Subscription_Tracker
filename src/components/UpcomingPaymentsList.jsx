@@ -1,4 +1,3 @@
-// src/components/UpcomingPaymentsList.jsx
 import React, { useMemo } from "react";
 import { getNextPaymentDate, daysUntil } from "../utils/subscriptions";
 
@@ -24,10 +23,15 @@ const UpcomingPaymentsList = ({ subscriptions }) => {
 
   return (
     <div>
-      <h2 className="text-sm xl:text-lg font-semibold mb-3">Upcoming Payments</h2>
+      <h2 className="text-sm xl:text-lg font-semibold mb-3">
+        Upcoming Payments
+      </h2>
       <ul className="divide-y">
         {upcoming.map((sub) => (
-          <li key={sub.id} className="py-2 flex justify-between items-center text-sm xl:text-md">
+          <li
+            key={sub.id}
+            className="py-2 flex justify-between items-center text-sm xl:text-md"
+          >
             <div>
               <p className="font-medium">{sub.name}</p>
               <p className="text-[0.7rem] xl:text-sm text-third">

@@ -1,4 +1,3 @@
-// src/components/CategoryDistributionChart.jsx
 import React, { useMemo } from "react";
 import {
   PieChart,
@@ -19,7 +18,6 @@ const COLORS = [
 ];
 
 const RADIAN = Math.PI / 180;
-// Egyedi label a szelet belsejébe
 const renderCustomizedLabel = ({
   cx,
   cy,
@@ -70,7 +68,9 @@ const CategoryDistributionChart = ({ subscriptions }) => {
 
   return (
     <div className="text-xs xl:text-md">
-      <h2 className="text-sm xl:text-lg font-semibold mb-3">Category Distribution</h2>
+      <h2 className="text-sm xl:text-lg font-semibold mb-3">
+        Category Distribution
+      </h2>
       <div className="w-full h-70">
         <ResponsiveContainer>
           <PieChart>

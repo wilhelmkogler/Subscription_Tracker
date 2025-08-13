@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat"
+      className="min-h-screen bg-cover bg-left xl:bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/images/wall.jpg')" }}
     >
       <Router>

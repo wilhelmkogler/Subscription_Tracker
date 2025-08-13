@@ -1,4 +1,3 @@
-// src/utils/subscriptions.js
 export const getNextPaymentDate = (startDate, billingCycle) => {
   if (!startDate) return null;
   const start = new Date(startDate);

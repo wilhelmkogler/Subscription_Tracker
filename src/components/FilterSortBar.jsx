@@ -6,7 +6,6 @@ const FilterSortBar = ({
   setFilters,
   availableCategories,
 }) => {
-  // ha nincs adat → ne rendereljen semmit
   if (!availableCategories || availableCategories.length === 0) {
     return null;
   }

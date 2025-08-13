@@ -19,7 +19,6 @@ const endOfMonth = (date) =>
   new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59);
 
 const ActiveSubsLineChart = ({ subscriptions }) => {
-  // ha nincs adat → ne rendereljen semmit
   if (!subscriptions || subscriptions.length === 0) {
     return null;
   }
@@ -29,9 +28,8 @@ const ActiveSubsLineChart = ({ subscriptions }) => {
     const base = new Date(now.getFullYear(), now.getMonth(), 1);
     const points = [];
 
-    // 5 év = 60 hónap → féléves bontás = 10 pont
     for (let i = 10; i >= 0; i--) {
-      const monthDate = addMonths(base, -(i * 6)); // fél év lépésköz
+      const monthDate = addMonths(base, -(i * 6));
       const eom = endOfMonth(monthDate);
 
       const label = `${monthDate.toLocaleString(undefined, {

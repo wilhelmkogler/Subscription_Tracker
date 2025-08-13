@@ -38,7 +38,7 @@ const AuthPage = () => {
     <div className="min-h-screen flex items-center justify-center px-4">
       <form
         onSubmit={handleAuth}
-        className="bg-white px-8 py-6 rounded-2xl shadow-md w-full max-w-md"
+        className="bg-white px-8 py-6 rounded-2xl shadow-md w-full max-w-sm xl:max-w-md"
       >
         <h2 className="text-3xl text-primary font-bold my-10 text-center">
           {isRegistering ? "Sign Up" : "Login"}
@@ -79,7 +79,7 @@ const AuthPage = () => {
           type="submit"
           className="w-full bg-secondary text-white py-2 rounded-lg hover:bg-blue-600"
         >
-          {isRegistering ? "Create Account" : "Login"}
+          {isRegistering ? "Create Account" : "Enter Dashboard"}
         </button>
 
         <p

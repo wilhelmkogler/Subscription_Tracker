@@ -1,4 +1,3 @@
-// src/components/AverageCostCard.jsx
 import React, { useMemo } from "react";
 import { monthlyValue } from "../utils/subscriptions";
 
@@ -15,7 +14,6 @@ const AverageCostCard = ({ subscriptions }) => {
 
   const curr = subscriptions[0]?.currency || "EUR";
 
-  // 🔹 Szám formázása szóközzel ezres tagolással
   const formatNumber = (num) =>
     num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -39,13 +37,17 @@ const AverageCostCard = ({ subscriptions }) => {
       </div>
 
       <div>
-        <p className="text-[0.8rem] xl:text-sm text-gray-500 mb-2">Monthly Expenses</p>
+        <p className="text-[0.8rem] xl:text-sm text-gray-500 mb-2">
+          Monthly Expenses
+        </p>
         <p className="text-xl xl:text-2xl text-primary font-bold">
           {formatNumber(Math.round(totalMonthly))} {curr}
         </p>
       </div>
       <div>
-        <p className="text-[0.8rem] xl:text-sm text-gray-500 mb-2">Yearly Expenses</p>
+        <p className="text-[0.8rem] xl:text-sm text-gray-500 mb-2">
+          Yearly Expenses
+        </p>
         <p className="text-xl xl:text-2xl text-primary font-bold">
           {formatNumber(Math.round(totalMonthly * 12))} {curr}
         </p>

@@ -84,7 +84,7 @@ const AddSubscriptionForm = ({ editSub, onClearEdit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="rounded">
+    <form onSubmit={handleSubmit} className="rounded-2xl">
       <h3 className="text-2xl font-bold mb-8">
         {editSub ? "Edit Subscription" : "Add Subscription"}
       </h3>

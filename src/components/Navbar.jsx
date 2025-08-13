@@ -31,7 +31,7 @@ const Navbar = ({ name }) => {
         </div>
         <div>
           <h1 className="text-2xl font-serif text-secondary font-bold">
-            Subscription Tracker
+            SUBSCRIPTION TRACKER
           </h1>
         </div>
         <div>
@@ -42,12 +42,13 @@ const Navbar = ({ name }) => {
             <Power className="w-4 h-4 text-black" />
           </button>
         </div>
+        
       </div>
 
       <div className="md:hidden flex flex-col gap-4 mb-6">
         <div className="flex flex-row justify-between items-center">
           <h1 className="text-xl font-serif text-secondary font-bold">
-            Subscription Tracker
+            SUBSCRIPTION TRACKER
           </h1>
           <button
             onClick={handleLogout}

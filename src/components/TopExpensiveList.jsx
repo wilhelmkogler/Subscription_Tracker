@@ -1,25 +1,19 @@
-// src/components/TopExpensiveList.jsx
 import React, { useMemo } from "react";
-import { Crown } from "lucide-react"; // lucide ikon
+import { Crown } from "lucide-react";
 
 const TopExpensiveList = ({ subscriptions, limit = 5 }) => {
   const items = useMemo(() => {
-    return (
-      [...subscriptions]
-        // csökkenő sorrend (balról a legdrágább)
-        .sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0))
-        .slice(0, limit)
-    );
+    return [...subscriptions]
+      .sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0))
+      .slice(0, limit);
   }, [subscriptions, limit]);
 
   if (items.length === 0) {
-    return (
-      <div></div>
-    );
+    return <div></div>;
   }
 
   const curr = items[0]?.currency || "EUR";
-  const formatNumber = (num) => Number(num || 0).toLocaleString("de-DE"); // ponttal ezres tagolás
+  const formatNumber = (num) => Number(num || 0).toLocaleString("de-DE");
 
   const COLORS = [
     "from-pink-400 to-pink-600",
@@ -46,10 +40,11 @@ const TopExpensiveList = ({ subscriptions, limit = 5 }) => {
               transition-transform 
             `}
           >
-            {/* Tartalom */}
             <div className="relative flex flex-col justify-between">
               <div className="flex justify-between">
-                <h3 className="font-bold text-md xl:text-lg leading-tight">{s.name}</h3>
+                <h3 className="font-bold text-md xl:text-lg leading-tight">
+                  {s.name}
+                </h3>
                 <p className="text-sm xl:text-md"> #{i + 1}</p>
               </div>
               <div>

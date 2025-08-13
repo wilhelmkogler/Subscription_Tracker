@@ -1,4 +1,3 @@
-// components/TopCategoryMonthlyBar.jsx
 import React, { useMemo } from "react";
 import {
   BarChart,
@@ -16,7 +15,7 @@ const TopCategoryMonthlyBar = ({ subscriptions, topN = 8 }) => {
     const map = {};
     subscriptions.forEach((s) => {
       const cat = s.category || "Uncategorized";
-      map[cat] = (map[cat] || 0) + monthlyValue(s); // Yearly -> /12
+      map[cat] = (map[cat] || 0) + monthlyValue(s);
     });
     return Object.entries(map)
       .map(([name, total]) => ({ name, total }))
@@ -32,9 +31,7 @@ const TopCategoryMonthlyBar = ({ subscriptions, topN = 8 }) => {
   const fmt = (n) => Number(n || 0).toLocaleString("de-DE");
 
   if (data.length === 0) {
-    return (
-      <div></div>
-    );
+    return <div></div>;
   }
 
   return (

@@ -15,7 +15,6 @@ const AllTimeTotalCostCard = ({ subscriptions }) => {
         (now.getMonth() - start.getMonth()) +
         (now.getDate() >= start.getDate() ? 0 : -1);
 
-      // ha éves előfizetés
       const totalSubCost =
         sub.billingCycle === "Yearly"
           ? (months / 12) * sub.price
@@ -33,7 +32,9 @@ const AllTimeTotalCostCard = ({ subscriptions }) => {
 
   return (
     <div className="flex flex-col items-center text-center">
-      <h2 className="text-sm xl:text-lg font-semibold mb-2">All-Time Total Cost</h2>
+      <h2 className="text-sm xl:text-lg font-semibold mb-2">
+        All-Time Total Cost
+      </h2>
       <p className="text-xl xl:text-3xl font-bold text-primary">
         {formatNumber(totalCost.toFixed(0))} {currency}
       </p>
