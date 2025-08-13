@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #069932; /* elso szín */
+  --color-secondary: #720ac7; /* masodik szín */
+  --color-third: #e31919; /* piros szín */
+  --color-four: #2d66f7; /* kek szín */
+}

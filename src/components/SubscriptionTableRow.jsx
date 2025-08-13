@@ -1,6 +1,7 @@
 import React from "react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import Swal from "sweetalert2";
 
 const getNextPaymentDate = (startDate, billingCycle) => {
   if (!startDate) return null;
@@ -34,13 +35,24 @@ const SubscriptionTableRow = ({ sub, onEdit }) => {
   const daysLeft = nextPayment ? daysUntil(nextPayment) : null;
 
   const handleDelete = async () => {
-    if (window.confirm(`Are you sure you want to delete ${sub.name}?`)) {
+    const result = await Swal.fire({
+      title: `Are you sure you want to cancel your ${sub.name} subscription?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    });
+
+    if (result.isConfirmed) {
       await deleteDoc(doc(db, "subscriptions", sub.id));
+      Swal.fire("Success!", `${sub.name} has been deleted.`, "success");
     }
   };
 
   return (
-    <tr className="border-b text-md">
+    <tr className="border-b text-xs xl:text-md">
       <td className="px-4 font-bold">{sub.name}</td>
       <td className="py-6">{sub.category}</td>
 
@@ -52,20 +64,20 @@ const SubscriptionTableRow = ({ sub, onEdit }) => {
       <td className="p-2">{sub.billingCycle}</td>
 
       <td className="p-2">
-        {sub.price} {sub.currency}
+        {sub.price?.toLocaleString("de-DE")} {sub.currency}
       </td>
 
       <td className="p-2">{daysLeft} days</td>
       <td className="py-6 pr-4 flex gap-2 text-md">
         <button
           onClick={() => onEdit(sub)}
-          className="bg-blue-500 text-white w-1/2 px-2 py-1 rounded hover:bg-blue-600"
+          className="bg-secondary text-white w-1/2 px-2 py-1 rounded hover:bg-blue-600"
         >
           Edit
         </button>
         <button
           onClick={handleDelete}
-          className="bg-red-500 text-white w-1/2 px-2 py-1 rounded hover:bg-red-600"
+          className="bg-primary text-white w-1/2 px-2 py-1 rounded hover:bg-red-600"
         >
           Delete
         </button>

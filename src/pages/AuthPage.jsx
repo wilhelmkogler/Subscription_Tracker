@@ -35,12 +35,12 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <form
         onSubmit={handleAuth}
-        className="bg-white p-8 rounded shadow-md w-full max-w-sm"
+        className="bg-white px-8 py-6 rounded-2xl shadow-md w-full max-w-md"
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">
+        <h2 className="text-3xl text-primary font-bold my-10 text-center">
           {isRegistering ? "Sign Up" : "Login"}
         </h2>
 
@@ -50,7 +50,7 @@ const AuthPage = () => {
           <input
             type="text"
             placeholder="Name"
-            className="w-full mb-3 px-4 py-2 border rounded"
+            className="w-full mb-3 px-4 py-2 border rounded-lg"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -60,7 +60,7 @@ const AuthPage = () => {
         <input
           type="email"
           placeholder="Email"
-          className="w-full mb-3 px-4 py-2 border rounded"
+          className="w-full mb-3 px-4 py-2 border rounded-lg"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -69,7 +69,7 @@ const AuthPage = () => {
         <input
           type="password"
           placeholder="Password"
-          className="w-full mb-4 px-4 py-2 border rounded"
+          className="w-full mb-4 px-4 py-2 border rounded-lg"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -77,17 +77,17 @@ const AuthPage = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+          className="w-full bg-secondary text-white py-2 rounded-lg hover:bg-blue-600"
         >
           {isRegistering ? "Create Account" : "Login"}
         </button>
 
         <p
-          className="text-sm text-center mt-4 text-blue-500 cursor-pointer hover:underline"
+          className="text-sm text-center mt-4 text-black cursor-pointer hover:scale-110 transition duration-200"
           onClick={() => setIsRegistering(!isRegistering)}
         >
           {isRegistering
-            ? "Already have an account? Login"
+            ? "Already have an account? Login here"
             : "No account? Register here"}
         </p>
       </form>

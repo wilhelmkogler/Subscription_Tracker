@@ -149,19 +149,11 @@ const AddSubscriptionForm = ({ editSub, onClearEdit }) => {
       <div className="flex flex-row-reverse justify-start items-center gap-4 mt-6">
         <button
           type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded-2xl hover:bg-green-600"
+          className="bg-primary text-white px-4 py-2 rounded-2xl hover:bg-green-600"
         >
           {editSub ? "Save Changes" : "Add Subscription"}
         </button>
-        {editSub && (
-          <button
-            type="button"
-            onClick={onClearEdit}
-            className="bg-red-600 text-white px-4 py-2 rounded-2xl hover:bg-red-800"
-          >
-            Cancel Edit
-          </button>
-        )}
+       
       </div>
     </form>
   );

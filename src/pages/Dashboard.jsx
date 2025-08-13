@@ -7,6 +7,14 @@ import SubscriptionCard from "../components/SubscriptionCard";
 import FilterSortBar from "../components/FilterSortBar";
 import SubscriptionTableRow from "../components/SubscriptionTableRow";
 import Navbar from "../components/Navbar";
+import UpcomingPaymentsList from "../components/UpcomingPaymentsList";
+import CategoryDistributionChart from "../components/CategoryDistributionChart";
+import TopExpensiveList from "../components/TopExpensiveList";
+import AverageCostCard from "../components/AverageCostCard";
+import ActiveSubsLineChart from "../components/ActiveSubsLineChart";
+import AllTimeCostList from "../components/AllTimeCostList";
+import TopCategoryMonthlyBar from "../components/TopCategoryMonthlyBar";
+import AllTimeTotalCostCard from "../components/AllTimeTotalCostCard";
 
 const Dashboard = () => {
   const user = auth.currentUser;
@@ -115,15 +123,15 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-500 p-4 md:p-6">
+    <div className="p-4 md:p-6">
       <Navbar name={name} />
 
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="w-full xl:w-[70%]">
           {filtered.length === 0 ? (
-            <p className="text-gray-500 text-center mt-10">
-              No subscriptions found.
-            </p>
+            <div className="bg-white flex justify-center items-center p-4 h-full rounded-2xl">
+              <p className="text-red-500 text-3xl font-bold">No Active Subscriptions</p>
+            </div>
           ) : (
             <div className="gap-4">
               {viewMode === "card" ? (
@@ -139,7 +147,7 @@ const Dashboard = () => {
                     />
                   ))}
 
-                  <div className="min-h-[200px] flex justify-center items-center bg-white font-semibold rounded-2xl hover:bg-gray-300 transition duration-200">
+                  <div className="min-h-[170px] xl:min-h-[200px] flex justify-center items-center bg-white font-semibold rounded-2xl hover:bg-gray-300 transition duration-200">
                     <button
                       onClick={() => {
                         setShowModal(true);
@@ -148,14 +156,14 @@ const Dashboard = () => {
                       className="w-full h-full flex flex-col justify-center gap-2 text-black hover:cursor-pointer"
                     >
                       <p className="text-3xl">+</p>
-                      <p>New Subscription</p>
+                      <p className="text-xs xl:text-lg">New Subscription</p>
                     </button>
                   </div>
                 </div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="min-w-full bg-white shadow rounded-2xl overflow-hidden text-left">
-                    <thead className="bg-gray-200 text-lg italic">
+                    <thead className="bg-gray-200 text-xs xl:text-lg italic">
                       <tr>
                         <th className="px-4">Name</th>
                         <th className="p-2">Category</th>
@@ -184,9 +192,26 @@ const Dashboard = () => {
               )}
             </div>
           )}
+
+          <div className="mt-6 rounded-2xl">
+            <TopExpensiveList subscriptions={filtered} />
+
+            <div className="flex flex-col xl:flex-row gap-6 mt-6">
+              <div className="w-full xl:w-2/3">
+                <TopCategoryMonthlyBar subscriptions={filtered} />
+              </div>
+              <div className="w-full xl:w-1/3">
+                <AllTimeCostList subscriptions={filtered} />
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <ActiveSubsLineChart subscriptions={filtered} />
+            </div>
+          </div>
         </div>
 
-        <div className="bg-gray-100 p-4 rounded-2xl w-full lg:w-[30%]">
+        <div className="bg-white p-4 rounded-2xl w-full lg:w-[30%]">
           <div className="flex flex-col gap-2 mb-4">
             <div>
               <button
@@ -194,40 +219,63 @@ const Dashboard = () => {
                   setShowModal(true);
                   setEditing(null);
                 }}
-                className="bg-green-500 w-full text-white text-lg p-4 rounded-2xl hover:cursor-pointer hover:bg-green-600"
+                className="bg-secondary w-full text-white text-sm xl:text-lg p-3 xl:p-4 rounded-2xl hover:cursor-pointer hover:bg-green-600"
               >
                 Add New Subscription
               </button>
             </div>
 
-            <div className="flex">
-              <button
-                onClick={() => setViewMode("card")}
-                className={`w-1/2 px-4 py-2 rounded-l-xl hover:cursor-pointer ${
-                  viewMode === "card" ? "bg-blue-600 text-white" : "bg-gray-300"
-                }`}
-              >
-                Card View
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`w-1/2 px-4 py-2 rounded-r-xl hover:cursor-pointer ${
-                  viewMode === "list" ? "bg-blue-600 text-white" : "bg-gray-300"
-                }`}
-              >
-                List View
-              </button>
-            </div>
+            {filtered.length === 0 ? (
+              <div></div>
+            ) : (
+              <div className="flex">
+                <button
+                  onClick={() => setViewMode("card")}
+                  className={`w-1/2 px-4 py-2 text-xs xl:text-md rounded-l-xl hover:cursor-pointer ${
+                    viewMode === "card"
+                      ? "bg-primary text-white"
+                      : "bg-gray-300"
+                  }`}
+                >
+                  Card View
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`w-1/2 px-4 py-2 text-xs xl:text-md rounded-r-xl hover:cursor-pointer ${
+                    viewMode === "list"
+                      ? "bg-primary text-white"
+                      : "bg-gray-300"
+                  }`}
+                >
+                  List View
+                </button>
+              </div>
+            )}
           </div>
 
-          <FilterSortBar
-            filters={filters}
-            setFilters={setFilters}
-            onFilterChange={setFilters}
-            availableCategories={availableCategories}
-            minPrice={minPrice}
-            maxPrice={maxPrice}
-          />
+          <div>
+            <FilterSortBar
+              filters={filters}
+              setFilters={setFilters}
+              onFilterChange={setFilters}
+              availableCategories={availableCategories}
+            />
+          </div>
+
+          <div className="mt-10 flex flex-col gap-6">
+            <AverageCostCard subscriptions={filtered} />
+          </div>
+
+          {/* Például két oszlopos elrendezésben */}
+          <div className="mt-10">
+            <CategoryDistributionChart subscriptions={filtered} />
+          </div>
+          <div className="mt-10">
+            <UpcomingPaymentsList subscriptions={filtered} />
+          </div>
+          <div className="mt-10">
+            <AllTimeTotalCostCard subscriptions={filtered} />
+          </div>
         </div>
       </div>
 

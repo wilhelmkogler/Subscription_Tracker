@@ -25,18 +25,23 @@ function App() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={user ? <Navigate to="/dashboard" /> : <AuthPage />}
-        />
-        <Route
-          path="/dashboard"
-          element={user ? <Dashboard /> : <Navigate to="/" />}
-        />
-      </Routes>
-    </Router>
+    <div
+      className="min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/images/wall.jpg')" }}
+    >
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={user ? <Navigate to="/dashboard" /> : <AuthPage />}
+          />
+          <Route
+            path="/dashboard"
+            element={user ? <Dashboard /> : <Navigate to="/" />}
+          />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

@@ -6,6 +6,11 @@ const FilterSortBar = ({
   setFilters,
   availableCategories,
 }) => {
+  // ha nincs adat → ne rendereljen semmit
+  if (!availableCategories || availableCategories.length === 0) {
+    return null;
+  }
+
   useEffect(() => {
     if (!filters.sort) {
       const updated = { ...filters, sort: "daysLeft-asc" };
@@ -38,7 +43,7 @@ const FilterSortBar = ({
         name="sort"
         value={filters.sort || ""}
         onChange={handleChange}
-        className="border rounded-lg px-3 py-2"
+        className="border text-sm xl:text-md rounded-lg px-3 py-2"
       >
         <option value="daysLeft-asc">Order By Days Left (Closest)</option>
         <option value="daysLeft-desc">Order By Days Left (Furthest)</option>
@@ -49,9 +54,12 @@ const FilterSortBar = ({
         <option value="startDate-asc">Order By Start date ↑</option>
         <option value="startDate-desc">Order By Start date ↓</option>
       </select>
+
       {/* CATEGORIES AS TOGGLE CHIPS */}
       <div>
-        <label className="block text-lg mb-2">Select a Category:</label>
+        <label className="block text-sm xl:text-lg font-semibold mt-4 mb-2">
+          Select a Category:
+        </label>
         <div className="flex flex-wrap gap-2">
           {availableCategories.map((cat) => {
             const active = filters.categories?.includes(cat);
@@ -61,11 +69,11 @@ const FilterSortBar = ({
                 type="button"
                 onClick={() => handleCategoryToggle(cat)}
                 aria-pressed={active}
-                className={`px-3 py-1.5 rounded-lg text-sm border transition hover:cursor-pointer
+                className={`px-3 py-1.5 rounded-lg text-[0.7rem] xl:text-sm border transition hover:cursor-pointer
                   ${
                     active
-                      ? "bg-blue-600 text-white border-blue-600 hover:bg-red-500"
-                      : "bg-white text-black border-black hover:bg-blue-600 hover:text-white"
+                      ? "bg-primary text-white border-primary hover:bg-red-500"
+                      : "bg-white text-black border-black hover:bg-primary hover:text-white"
                   }
                 `}
               >
@@ -82,7 +90,7 @@ const FilterSortBar = ({
           name="billingCycle"
           value={filters.billingCycle || ""}
           onChange={handleChange}
-          className="border rounded-lg w-1/2 px-3 py-2"
+          className="border text-sm xl:text-md rounded-lg w-1/2 px-3 py-2"
         >
           <option value="">All Billing Plans</option>
           <option value="Monthly">Monthly</option>
@@ -94,33 +102,13 @@ const FilterSortBar = ({
           name="currency"
           value={filters.currency || ""}
           onChange={handleChange}
-          className="border rounded-lg w-1/2 px-3 py-2"
+          className="border text-sm xl:text-md rounded-lg w-1/2 px-3 py-2"
         >
           <option value="">All Currencies</option>
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
           <option value="HUF">HUF</option>
         </select>
-      </div>
-
-      {/* PRICE RANGE */}
-      <div className="flex gap-2">
-        <input
-          type="number"
-          name="minPrice"
-          placeholder="Min Price"
-          value={filters.minPrice || ""}
-          onChange={handleChange}
-          className="border rounded-lg px-3 py-2 w-1/2"
-        />
-        <input
-          type="number"
-          name="maxPrice"
-          placeholder="Max Price"
-          value={filters.maxPrice || ""}
-          onChange={handleChange}
-          className="border rounded-lg px-3 py-2 w-1/2"
-        />
       </div>
     </div>
   );
