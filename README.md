@@ -54,32 +54,32 @@
 
 <p align="justify">Of course, there is also the option to view the subscriptions in a standard, familiar table layout for easier and more structured overview.</p>
 
-    <h2>Charts</h2>
+<h2>Charts</h2>
 
 <img src="public/images/git/7.JPG" alt="" srcset="">
 
 <p align="justify">We also have access to a Top 5 Most Expensive Subscriptions report, a Category-Based Cost and Proportion chart, and an All-Time Cost breakdown for each subscription.</p>
 
-    <h2>Extra Stats</h2>
+<h2>Extra Stats</h2>
 
 <img src="public/images/git/8.JPG" alt="" srcset="">
 
 <p align="justify">As well as a Line chart showing the number of subscriptions over the years, an Upcoming Payments list, and a total cost summary for all subscriptions, calculated from their respective start dates.</p>
 
-    <h2>Dynamic Filter</h2>
+<h2>Dynamic Filter</h2>
 
 <img src="public/images/git/11.JPG" alt="" srcset="">
 
 <p align="justify">We also have the ability to filter and sort subscriptions, with all metrics and statistics dynamically updating accordingly.</p>
 
-       <h2>Pop Up Messages</h2>
+<h2>Pop Up Messages</h2>
 
 <img src="public/images/git/9.JPG" alt="" srcset="">
 <img src="public/images/git/10.JPG" alt="" srcset="">
 
 <p align="justify">For various interactions, such as logging out or deleting a subscription, the user is presented with dedicated pop-up confirmation dialogs, implemented using SweetAlert.</p>
 
-       <h2>Responsive Design</h2>
+<h2>Responsive Design</h2>
 
 <img src="public/images/git/11.png" alt="" srcset="">
 
